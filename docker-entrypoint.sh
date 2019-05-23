@@ -69,11 +69,11 @@ if ! $(wp-su core is-installed); then
     install_gravity_flow
 else
 
-    if [ -z ${NO_CACHE_GRAVITY_FORMS} ]; then
+    if [[ ${NO_CACHE_GRAVITY_FORMS} == '1' ]]; then
         install_gravity_forms
     fi
 
-    if [ -z ${NO_CACHE_GRAVITY_FLOW} ]; then
+    if [[ ${NO_CACHE_GRAVITY_FLOW} == '1' ]]; then
         install_gravity_flow
     fi
 fi
