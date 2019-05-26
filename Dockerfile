@@ -28,8 +28,8 @@ RUN docker-php-ext-install -j$(nproc) iconv \
         && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
         && docker-php-ext-install -j$(nproc) gd
 
-# Add mysql driver required for wp-browser
-RUN docker-php-ext-install mysqli
+# Add mysql drivers required for wp-browser
+RUN docker-php-ext-install mysqli pdo_mysql
 
 # Configure php
 RUN echo "date.timezone = UTC" >> /usr/local/etc/php/php.ini
