@@ -11,7 +11,7 @@ RUN apt-get update && \
             libfreetype6-dev \
             libjpeg62-turbo-dev \
             libpng-dev \
-            mysql-client \
+            mariadb-client \
             sudo less \
             zip unzip \
         --no-install-recommends && \
