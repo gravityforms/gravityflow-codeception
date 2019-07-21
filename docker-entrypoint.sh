@@ -41,8 +41,8 @@ rm -rf /wp-core/wp-content/uploads/gravity_forms
 # Make sure permissions are correct.
 echo 'Setting permissions'
 cd /wp-core
-chown www-data:www-data wp-content/plugins
-mkdir wp-content/uploads
+chown -R www-data:www-data wp-content/plugins
+mkdir -p wp-content/uploads
 chown -R www-data:www-data wp-content/uploads
 chmod 755 wp-content
 
