@@ -42,8 +42,6 @@ rm -rf /wp-core/wp-content/uploads/gravity_forms
 echo 'Setting permissions'
 cd /wp-core
 chown -R www-data:www-data wp-content
-mkdir -p wp-content/uploads
-chown -R www-data:www-data wp-content/uploads
 chmod 755 wp-content
 
 export WP_CLI_CACHE_DIR=/wp-core/.wp-cli/cache
