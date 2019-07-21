@@ -39,6 +39,7 @@ rm -rf /wp-core/wp-content/uploads/gravity_forms
 
 
 # Make sure permissions are correct.
+echo 'Setting permissions'
 cd /wp-core
 chown -R www-data:www-data wp-content
 chmod 755 wp-content
