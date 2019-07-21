@@ -1,4 +1,4 @@
-FROM php:7.2-cli
+FROM php:7.2-cli-stretch
 
 MAINTAINER Steve Henty steve@gravityflow.io
 
@@ -11,7 +11,7 @@ RUN apt-get update && \
             libfreetype6-dev \
             libjpeg62-turbo-dev \
             libpng-dev \
-            mariadb-client \
+            mysql-client \
             sudo less \
             zip unzip \
         --no-install-recommends && \
