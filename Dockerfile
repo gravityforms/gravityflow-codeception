@@ -46,6 +46,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
         --install-dir=/usr/local/bin
 
 RUN composer global require "lucatume/wp-browser=^2.4" \
+	"codeception/module-asserts=^1.0" \
 	"codeception/module-phpbrowser=^1.0" \
 	"codeception/module-webdriver=^1.0" \
 	"codeception/module-db=^1.0" \
