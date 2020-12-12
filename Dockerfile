@@ -52,6 +52,7 @@ RUN composer global require "lucatume/wp-browser=^2.4" \
 	"codeception/module-db=^1.0" \
 	"codeception/module-filesystem=^1.0" \
 	"codeception/module-cli=^1.0" \
+	"codeception/module-rest=^1.2" \
 	"codeception/util-universalframework=^1.0" --prefer-dist --optimize-autoloader && \
     composer clear-cache && \
     ln -s ~/.composer/vendor/bin/codecept /usr/local/bin/codecept
