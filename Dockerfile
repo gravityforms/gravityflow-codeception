@@ -46,12 +46,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
         --install-dir=/usr/local/bin
 
 RUN composer global require "lucatume/wp-browser=^2.4" \
-	"codeception/module-asserts=^1.0" \
+	"codeception/module-asserts=^1.3" \
 	"codeception/module-phpbrowser=^1.0" \
-	"codeception/module-webdriver=^1.0" \
+	"codeception/module-webdriver=^1.1" \
 	"codeception/module-db=^1.0" \
 	"codeception/module-filesystem=^1.0" \
-	"codeception/module-cli=^1.0" \
+	"codeception/module-cli=^1.1" \
 	"codeception/module-rest=^1.2" \
 	"codeception/util-universalframework=^1.0" --prefer-dist --optimize-autoloader && \
     composer clear-cache && \
