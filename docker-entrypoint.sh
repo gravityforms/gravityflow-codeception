@@ -6,24 +6,12 @@ wp-su() {
 }
 
 install_gravity_forms() {
-    if [ -z ${GITHUB_TOKEN} ]; then
+    rm -rf /wp-core/wp-content/plugins/gravityforms
 
-        echo "Installing the latest version of Gravity Forms using the CLI"
+    echo "Grabbing the latest development master of Gravity Forms"
 
-        wp-su plugin install gravityformscli --force --activate
-        wp-su gf install --key=${GF_KEY} --activate --force --quiet
-        echo "Gravity Forms installation complete"
-        wp-su gf tool verify-checksums
+    git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityforms/gravityforms.git /wp-core/wp-content/plugins/gravityforms
 
-    else
-
-        rm -rf /wp-core/wp-content/plugins/gravityforms
-
-        echo "Grabbing the latest development master of Gravity Forms"
-
-        git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityforms/gravityforms.git /wp-core/wp-content/plugins/gravityforms
-
-    fi
 }
 
 install_gravity_flow() {
@@ -31,7 +19,7 @@ install_gravity_flow() {
 
     echo "Grabbing the latest development master of Gravity Flow"
 
-    git clone -b master --single-branch https://github.com/gravityflow/gravityflow.git /wp-core/wp-content/plugins/gravityflow
+    git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityflow/gravityflow.git /wp-core/wp-content/plugins/gravityflow
 }
 
 # Clean up from previous tests
