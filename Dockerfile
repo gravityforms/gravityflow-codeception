@@ -25,17 +25,15 @@ RUN apt-get update && \
 
 # Install php extensions
 RUN docker-php-ext-install \
-    bcmath \
-    gd \
-    zip
-
-RUN docker-php-ext-install -j$(nproc) iconv \
-        && docker-php-ext-configure gd --with-freetype --with-jpeg \
-        && docker-php-ext-install -j$(nproc) gd
-
-
-# Add mysql driver required for wp-browser
-RUN docker-php-ext-install mysqli
+	bcmath \
+	zip \
+	# Add mysql driver required for wp-browser
+	mysqli \
+	# Additional dependencies.
+	&& docker-php-ext-install -j$(nproc) iconv gd \
+	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && curl -sL https://deb.nodesource.com/setup_16.x | bash -  \
+    && apt-get install -y nodejs
 
 # Configure php
 RUN echo "date.timezone = UTC" >> /usr/local/etc/php/php.ini
