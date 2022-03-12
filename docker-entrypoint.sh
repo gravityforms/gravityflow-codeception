@@ -8,16 +8,20 @@ wp-su() {
 install_gravity_forms() {
     rm -rf /wp-core/wp-content/plugins/gravityforms
 
-    echo "Grabbing the latest development master of Gravity Forms"
+    echo "Grabbing the latest development master of Gravity Forms."
 
     git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityforms/gravityforms.git /wp-core/wp-content/plugins/gravityforms
 
+    cd /wp-core/wp-content/plugins/gravityforms
+    npm install -g grunt-cli && \
+    npm install && \
+    npm run release
 }
 
 install_gravity_flow() {
     rm -rf /wp-core/wp-content/plugins/gravityflow
 
-    echo "Grabbing the latest development master of Gravity Flow"
+    echo "Grabbing the latest development master of Gravity Flow."
 
     git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityflow/gravityflow.git /wp-core/wp-content/plugins/gravityflow
 }
