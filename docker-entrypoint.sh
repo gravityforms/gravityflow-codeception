@@ -24,6 +24,9 @@ install_gravity_flow() {
     echo "Grabbing the latest development master of Gravity Flow."
 
     git clone -b master --single-branch https://$GITHUB_TOKEN@github.com/gravityflow/gravityflow.git /wp-core/wp-content/plugins/gravityflow
+    cd /wp-core/wp-content/plugins/gravityflow
+    npm install && \
+    npm run release
 }
 
 # Clean up from previous tests
