@@ -1,6 +1,6 @@
 FROM php:7.4-cli
 
-MAINTAINER Steve Henty steve@gravityflow.io
+MAINTAINER Rocketgenius support@gravityforms.com
 
 
 # Install required system packages
