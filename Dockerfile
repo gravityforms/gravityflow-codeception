@@ -1,4 +1,4 @@
-FROM php:7.4-cli
+FROM php:8.1-cli
 
 MAINTAINER Rocketgenius support@gravityforms.com
 
@@ -19,6 +19,9 @@ RUN apt-get update && \
             libpcre3 \
             libpcre3-dev \
             zip unzip \
+    		python3.6 \
+            python3-distutils \
+            python3-pip python3-apt \
         --no-install-recommends && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -34,6 +37,8 @@ RUN docker-php-ext-install \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
     && curl -sL https://deb.nodesource.com/setup_16.x | bash -  \
     && apt-get install -y nodejs
+
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Configure php
 RUN echo "date.timezone = UTC" >> /usr/local/etc/php/php.ini
@@ -63,6 +68,36 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 # Prepare application
 WORKDIR /repo
+
+# Replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# nvm environment variables
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 16.13.0
+
+RUN mkdir $NVM_DIR
+
+# install nvm
+# https://github.com/creationix/nvm#install-script
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+
+# install node and npm
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
+# confirm installation
+RUN node -v
+RUN npm -v
+
+# Install gulp-cli
+RUN npm install gulp-cli
 
 # Add source-code
 COPY . /repo
